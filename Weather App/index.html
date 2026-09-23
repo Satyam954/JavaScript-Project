@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App </title>
+    <link rel="stylesheet" href="input.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+</head>
+
+<body class="bg-blue-950">
+
+    <div class="flex  items-center justify-around">
+        <div class="font-bold text-5xl">
+            <h1 class="bg-linear-to-r from-green-400 to-green-600 bg-clip-text text-transparent font-bold text-4xl">
+                Weather app <br> <span
+                    class="text-transparent bg-clip-text bg-linear-to-r from-amber-200 via-yellow-400 to-orange-500 font-extrabold text-5xl">using
+                    JavaScript</span></h1>
+        </div>
+        <div class="mt-20 bg-linear-to-r  from-emerald-500 to-blue-600 rounded-lg p-5">
+            <div class="mt-4">
+                <form id="form" class="flex gap-5" action="">
+                    <input id="inpcity"
+                        class="bg-amber-100 rounded-3xl px-4  py-2 border-none outline-none focus:outline-none focus:ring-0"
+                        type="text" placeholder="Search">
+                    <button type="submit" id="search" class=" rounded-full px-3  py-3 bg-cyan-50">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                            <path
+                                d="M480 272C480 317.9 465.1 360.3 440 394.7L566.6 521.4C579.1 533.9 579.1 554.2 566.6 566.7C554.1 579.2 533.8 579.2 521.3 566.7L394.7 440C360.3 465.1 317.9 480 272 480C157.1 480 64 386.9 64 272C64 157.1 157.1 64 272 64C386.9 64 480 157.1 480 272zM272 416C351.5 416 416 351.5 416 272C416 192.5 351.5 128 272 128C192.5 128 128 192.5 128 272C128 351.5 192.5 416 272 416z" />
+                        </svg>
+                    </button>
+                </form>
+                <div id="info">
+                     <!-- <div class=" flex flex-col  gap-3 items-center justify-center mt-7 ">
+                         <h2 class="text-white text-2xl " id="city">
+                            Clear Sky
+                        </h2>
+                        <img class="h-15 w-15"
+                            src="data:image/png;base64,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"
+                            alt="">
+                        <h2 class="text-white text-2xl " id="temp">
+                            22Deg cel
+                        </h2>
+                        <h2 class="text-white text-2xl " id="city">
+                            Delhi
+                        </h2>
+                    </div>
+                    <div class="flex justify-center gap-5 mt-7 mb-5">
+                        <p class="text-white text-xl ">Humidity</p>
+                        <p class="text-white text-xl ">wind
+                            <p class="text-white text-sm ">speed:</p>
+                            <p class="text-white text-sm ">Dust:</p>
+                            <p class="text-white text-sm ">Degree:</p>
+                        </p>
+                    </div>  -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="index.js"></script>
+</body>
+
+</html>
