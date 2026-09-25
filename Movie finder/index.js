@@ -56,7 +56,7 @@ movieform.addEventListener("submit", (e) => {
 
 
 async function searchMovies(movieName) {
-    let responce = await fetch(` http://www.omdbapi.com/?apikey=27e5ed85&s=${movieName}`)
+    let responce = await fetch(` https://www.omdbapi.com/?apikey=27e5ed85&s=${movieName}`)
     let data = await responce.json()
 
     if (data.Response === "True") {
