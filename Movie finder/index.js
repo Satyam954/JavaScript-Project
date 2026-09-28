@@ -1,5 +1,3 @@
-
-
 const movieform = document.querySelector("#movieform")
 const movieinput = document.querySelector("#movieinput")
 const moviehub = document.querySelector("#moviehub")
@@ -33,7 +31,7 @@ movieform.addEventListener("submit", (e) => {
             <div class="col-span-full py-16 text-center">
 
                 <div class="mb-4 text-5xl">
-                    🔍
+                    🔍 
                 </div>
 
                 <p class="text-xl font-semibold text-white">
@@ -56,7 +54,7 @@ movieform.addEventListener("submit", (e) => {
 
 
 async function searchMovies(movieName) {
-    let responce = await fetch(` https://www.omdbapi.com/?apikey=27e5ed85&s=${movieName}`)
+    let responce = await fetch(` https://www.omdbapi.com/?apikey=27e5ed85&s=${encodeURIComponent(movieName)}`)
     let data = await responce.json()
 
     if (data.Response === "True") {
@@ -69,7 +67,7 @@ async function searchMovies(movieName) {
                 <div class="col-span-full py-16 text-center">
 
                     <div class="mb-4 text-5xl">
-                        😕
+                        
                     </div>
 
                     <p class="text-xl font-semibold text-white">
